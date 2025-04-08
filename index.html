@@ -1,32 +1,44 @@
 html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Embedder</title>
     <style>
+        /* Green animated background */
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            background: linear-gradient(120deg, #32CD32, #98FB98);
+            background-size: 300% 300%;
+            animation: gradientAnimation 6s ease infinite;
+            font-family: Arial, sans-serif;
             overflow: hidden;
-            background-color: #98FB98; /* Light green background */
-            position: relative;
         }
 
-        #container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
             text-align: center;
-            width: 90%;
-            max-width: 600px;
-            position: relative;
+            color: white;
             z-index: 2;
+            position: relative;
         }
 
         textarea {
@@ -34,34 +46,23 @@ html>
             width: 80%;
             max-width: 400px;
             height: 150px;
-            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
             resize: none;
-            z-index: 2;
         }
 
         button {
             padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
             border: none;
             background-color: #228B22;
             color: white;
-            border-radius: 5px;
             cursor: pointer;
-            z-index: 2;
         }
 
         button:hover {
             background-color: #32CD32;
-        }
-
-        #result {
-            margin-top: 15px;
-            word-wrap: break-word;
-            width: 100%;
-            max-height: 150px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            word-break: break-all;
-            z-index: 2;
         }
 
         .floating-squares,
@@ -78,7 +79,7 @@ html>
         .square,
         .circle {
             position: absolute;
-            background-color: rgba(34, 139, 34, 0.3); /* Light green color with transparency */
+            background-color: rgba(255, 255, 255, 0.3);
             animation: floatAnimation 10s linear infinite;
         }
 
@@ -132,10 +133,11 @@ html>
         window.onload = createFloatingShapes;
     </script>
 </head>
+
 <body>
     <div class="floating-squares"></div>
     <div class="floating-circles"></div>
-    <div id="container">
+    <div class="container">
         <h1>Website Embedder</h1>
         <textarea id="inputUrl" placeholder="Enter website URL here..."></textarea>
         <br>
@@ -143,4 +145,5 @@ html>
         <div id="result"></div>
     </div>
 </body>
+
 </html>
