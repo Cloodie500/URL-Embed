@@ -1,2 +1,2 @@
-# URL-Preview
-http://Cloodie500.github.io/URL-Preview
+# URL-Previewer
+http://Cloodie500.github.io/URL-Previewer
