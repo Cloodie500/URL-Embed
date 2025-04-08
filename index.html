@@ -3,60 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <title>Website Embedder</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #98FB98; /* Light green background */
+            position: relative;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 15px;
+            resize: none;
+            z-index: 2;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #228B22;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        button:hover {
+            background-color: #32CD32;
+        }
+
+        #result {
+            margin-top: 15px;
+            word-wrap: break-word;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            z-index: 2;
+        }
+
+        .floating-squares,
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .square,
+        .circle {
+            position: absolute;
+            background-color: rgba(34, 139, 34, 0.3); /* Light green color with transparency */
+            animation: floatAnimation 10s linear infinite;
+        }
+
+        .square {
+            width: 20px;
+            height: 20px;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(100vh);
+            }
+
+            100% {
+                transform: translateY(-100vh);
+            }
+        }
+    </style>
+    <script>
+        function embedWebsite() {
+            const inputUrl = document.getElementById('inputUrl').value;
+            const embedUrl = `<iframe src="${inputUrl}" width="100%" height="400px" frameborder="0"></iframe>`;
+            document.getElementById('result').innerHTML = '<strong>Embedded Website:</strong><br>' + embedUrl;
+        }
+
+        function createFloatingShapes() {
+            const squaresContainer = document.querySelector('.floating-squares');
+            const circlesContainer = document.querySelector('.floating-circles');
+
+            for (let i = 0; i < 20; i++) {
+                const square = document.createElement('div');
+                square.classList.add('square');
+                square.style.left = `${Math.random() * 100}vw`;
+                square.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                squaresContainer.appendChild(square);
+
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                circle.style.left = `${Math.random() * 100}vw`;
+                circle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                circlesContainer.appendChild(circle);
+            }
+        }
+
+        window.onload = createFloatingShapes;
+    </script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home">
-            <h2>Home Section</h2>
-            <p>This is the main content area.</p>
-        </section>
-
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Learn more about our company.</p>
-        </section>
-
-        <section id="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>Web Design</li>
-                <li>SEO Optimization</li>
-                <li>Digital Marketing</li>
-            </ul>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 My Company. All rights reserved.</p>
-    </footer>
+    <div class="floating-squares"></div>
+    <div class="floating-circles"></div>
+    <div id="container">
+        <h1>Website Embedder</h1>
+        <textarea id="inputUrl" placeholder="Enter website URL here..."></textarea>
+        <br>
+        <button onclick="embedWebsite()">Embed Website</button>
+        <div id="result"></div>
+    </div>
 </body>
 </html>
