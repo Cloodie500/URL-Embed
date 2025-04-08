@@ -1,2 +1,2 @@
-# URL-Embed
-http://Cloodie500.github.io/URL-Embed
+# URL-Embedder
+http://Cloodie500.github.io/URL-Embedder
